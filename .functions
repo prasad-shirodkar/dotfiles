@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+is_macos() {
+  local platform
+  platform=$(uname)
+  [ "$platform" == "Darwin" ]
+}
+
+is_linux() {
+  local platform
+  platform=$(uname)
+  [ "$platform" == "Linux" ]
+}
+
+function delete_docker_images() {
+ docker rmi $(docker images | grep "$1") -f
+}
+
+function delete_docker_images_dangling() {
+ docker rmi $(docker images -f "dangling=true" -q)
+}
+
+function delete_docker_images_without_tag(){
+ docker rmi $(docker images -a|grep "<none>"|awk '$1=="<none>" {print $3}')
+}
+
+# in your .bashrc/.zshrc/*rc
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+
+cloneAllGithubOrg() {
+  # https://gist.github.com/caniszczyk/3856584?permalink_comment_id=3883313#gistcomment-3883313
+  page=1
+  while links=($(curl -H "Authorization: token ${GITHUB_TOKEN}" -s "https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100&page=${page}" | jq -rc '.[] | {ssh_url} | .ssh_url'));  [[ "$links" ]]
+  do
+      GIT_TERMINAL_PROMPT=0 parallel git clone {} ::: "${links[@]}"
+      ((++page))
+  done
+}
+
+#mac internet troubleshooting
+function airport_loop() {
+ if [[ ! is_macos ]]; then
+  echo "This is not macos"
+  exit 1
+ fi
+ while sleep 1; do
+  #airport -I | grep 'agrCtlRSSI'
+  airport -I
+  printf "\n"
+ done
+}
+alias wifitest="airport_loop"

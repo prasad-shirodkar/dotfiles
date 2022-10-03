@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+alias ls="ls --color"
+alias ll="ls -l --color"
+alias lla="ls -al --color"
+
+alias gl="git log"
+alias gcm="git checkout master"
+alias gcb="git checkout -b"
+alias gmm="git merge master"
+alias grv="git remote -v"
+alias gs="git status"
+alias gfo="git fetch origin"
+alias gfop="git fetch origin --prune"
+alias gfu="git fetch upstream"
+alias gpom="git pull origin master"
+alias grom="git rebase origin/master"
+alias gd="git diff"
+alias bgd="batdiff"
+alias gsh="git stash"
+alias gshp="git stash pop"
+alias grw="git restore -W ."
+alias gca="git commit -a"
+alias gcar="git commit -a --reuse-message=HEAD"
+alias gcs="git commit -a --signoff"
+alias gcsr="git commit -a --signoff --reuse-message=HEAD"
+
+# view docker logs
+alias dlo="sudo journalctl -xu docker.service"
+
+#docker restart
+alias dre="sudo systemctl daemon-reload && sudo service docker restart"
+
+alias dsp="docker system prune -a"
+
+alias drmi="delete_docker_images"
+alias drmid="delete_docker_images_dangling"
+alias drmiwt="delete_docker_images_without_tag"
+
+alias kgpa="kubectl get pods -A"
+alias kgpaw="kubectl get pods -A -w"
+
+alias kcc="kind create cluster --config ~/kind-config.yaml"
+alias kdc="kind delete cluster"
+alias kdca="kind delete clusters --all"
+alias kgc="kind get clusters"
+
+alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
+alias wifitest="airport_loop"

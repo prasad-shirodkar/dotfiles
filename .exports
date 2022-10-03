@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Set bash as our shell, idk why anyone would use something else ;)
+shell="$(which bash)";
+export SHELL="$shell";
+
+# Set vim as the default editor for all apps that check this
+export EDITOR='vim';
+
+export TERM=xterm;
+
+export PS1="\W\[\033[32m\]$(__git_ps1 " (%s)")\[\033[00m\] $";
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=50000000;
+export HISTFILESIZE=$HISTSIZE;
+export HISTTIMEFORMAT='%F, %T ';
+export HISTCONTROL=ignoredups:ignoreboth:erasedups;
+# Make some commands not show up in history
+export HISTIGNORE="history:ls:pwd:";
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r";
