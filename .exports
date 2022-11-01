@@ -9,6 +9,10 @@ export EDITOR='vim';
 
 export TERM=xterm;
 
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  #git branch --show-current
+}
 export PS1="\W\[\033[32m\]$(__git_ps1 " (%s)")\[\033[00m\] $";
 
 # Larger bash history (allow 32³ entries; default is 500)

@@ -1,0 +1,5 @@
+# add gnubin for mac
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+export GROOVY_HOME="/usr/local/opt/groovy/libexec"
+export PATH=$GROOVY_HOME/bin:$PATH
