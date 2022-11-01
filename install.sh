@@ -17,7 +17,5 @@ mv ~/tmp/z/z.sh /usr/local/bin/
 mv ~/tmp/z/z.1 /usr/local/share/man/man1
 rm -rf ~/tmp/z
 
-# fzf utility
-git clone https://github.com/junegunn/fzf.git ~/.fzf
-chmod +x ~/.fzf/install
-~/.fzf/install --all
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
