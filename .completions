@@ -8,3 +8,13 @@ source <(kubebuilder completion bash)
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)            fzf "$@" ;;
+  esac
+}
