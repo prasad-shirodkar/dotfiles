@@ -18,7 +18,7 @@ set smartcase
 set clipboard=unnamed
 
 " fzf vim bindings
-set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 
 " nnoremap <silent> <C-f> :Files<CR>
 
