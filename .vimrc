@@ -35,6 +35,18 @@ nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+Plug 'maralla/completor.vim'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+" Enable lsp for go by using gopls
+let g:completor_filetype_map = {}
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
+
 " Initialize plugin system
 call plug#end()
 
