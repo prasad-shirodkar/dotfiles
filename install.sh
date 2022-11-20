@@ -19,3 +19,6 @@ rm -rf ~/tmp/z
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
+
+# https://github.com/golang/tools/tree/master/gopls#installation
+go install golang.org/x/tools/gopls@latest
