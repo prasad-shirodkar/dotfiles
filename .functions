@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-is_macos() {
+function exists() {
+  command -v "$1" &> /dev/null
+}
+
+function is_macos() {
   local platform
   platform=$(uname)
   [ "$platform" == "Darwin" ]
 }
 
-is_linux() {
+function is_linux() {
   local platform
   platform=$(uname)
   [ "$platform" == "Linux" ]
@@ -30,7 +34,7 @@ help() {
     "$@" --help 2>&1 | bathelp
 }
 
-cloneAllGithubOrg() {
+function cloneAllGithubOrg() {
   # https://gist.github.com/caniszczyk/3856584?permalink_comment_id=3883313#gistcomment-3883313
   page=1
   while links=($(curl -H "Authorization: token ${GITHUB_TOKEN}" -s "https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100&page=${page}" | jq -rc '.[] | {ssh_url} | .ssh_url'));  [[ "$links" ]]
