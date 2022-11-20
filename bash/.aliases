@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source $(dirname "$0")/.functions
-
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
