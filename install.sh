@@ -3,6 +3,8 @@
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 source $SCRIPT_DIR/bash/.functions
 
+pushd $SCRIPT_DIR
+
 if exists brew; then
   brew update && brew upgrade
   brew bundle check
@@ -23,6 +25,10 @@ else
   fi
   brew dump install --file=$SCRIPT_DIR/Brewfile
 fi
+
+stow --target=$HOME bash
+stow --target=$HOME vim
+stow --target=$HOME tmux
 
 # Git completion
 wget -O ~/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
@@ -46,3 +52,5 @@ $(brew --prefix)/opt/fzf/install
 
 # https://github.com/golang/tools/tree/master/gopls#installation
 exists go && go install golang.org/x/tools/gopls@latest
+
+popd $SCRIPT_DIR
