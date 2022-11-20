@@ -80,3 +80,8 @@ alias dl="cat ~/.dockerhub_access_token | docker login -u pshirodkar --password-
 alias dlgh="cat ~/.github_access_token | docker login ghcr.io -u pshirodkar --password-stdin"
 
 alias glint="golangci-lint run"
+
+# https://github.com/Bash-it/bash-it/blob/master/aliases/available/tmux.aliases.bash
+alias txl='tmux ls'
+alias txn='tmux new -s'
+alias txa='tmux a -t'
