@@ -36,8 +36,8 @@ chmod +x ~/.git-completion.bash
 . ~/.git-completion.bash
 
 # Git prompt
-wget -O ~/.git-prompt.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.bash
-chmod +x ~/.git-prompt.bash
+wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+chmod +x ~/.git-prompt.sh
 . ~/.git-prompt.bash
 
 # z utility
