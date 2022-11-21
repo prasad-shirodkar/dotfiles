@@ -3,7 +3,7 @@
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 source $SCRIPT_DIR/bash/.functions
 
-pushd $SCRIPT_DIR
+pushd $SCRIPT_DIR > /dev/null
 
 if exists brew; then
   brew update && brew upgrade
@@ -53,4 +53,4 @@ $(brew --prefix)/opt/fzf/install
 # https://github.com/golang/tools/tree/master/gopls#installation
 exists go && go install golang.org/x/tools/gopls@latest
 
-popd $SCRIPT_DIR
+popd > /dev/null 
