@@ -15,7 +15,6 @@ function parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
   #git branch --show-current
 }
-export PS1="\W\[\033[32m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ ";
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=50000000;
@@ -26,7 +25,13 @@ export HISTCONTROL=ignoredups:ignoreboth:erasedups;
 export HISTIGNORE="history:ls:pwd:";
 
 # Gets rid of "bash: update_terminal_cwd: command not found" error
-unset PROMPT_COMMAND
+#unset PROMPT_COMMAND
 
 # After each command, append to the history file and reread it
-export PROMPT_COMMAND="history -a; history -c; history -r;"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+#PROMPT_COMMAND="history -a; history -c; history -r;"
+
+GREEN="\[\033[32m\]"
+RESTORE="\[\033[00m\]"
+PS1="\W${GREEN}$(__git_ps1 "(%s)")${RESTORE}\$ ";
+#PS1='\W$(__git_ps1 " (%s)")\$ '
