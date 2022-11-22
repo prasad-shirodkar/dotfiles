@@ -9,7 +9,7 @@ if exists brew; then
   brew update && brew upgrade
   brew bundle check
   if [[ $? -ne 0 ]]; then
-    brew dump install --file=$SCRIPT_DIR/Brewfile
+    brew bundle install --file=$SCRIPT_DIR/Brewfile
   fi
 else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -23,7 +23,7 @@ else
       sudo yum -y install procps-ng curl file git
     fi
   fi
-  brew dump install --file=$SCRIPT_DIR/Brewfile
+  brew bundle install --file=$SCRIPT_DIR/Brewfile
 fi
 
 stow --target=$HOME bash
@@ -39,13 +39,6 @@ chmod +x ~/.git-completion.bash
 wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 chmod +x ~/.git-prompt.sh
 . ~/.git-prompt.bash
-
-# z utility
-git clone https://github.com/rupa/z.git ~/tmp/z
-chmod +x ~/tmp/z/z.sh
-mv ~/tmp/z/z.sh /usr/local/bin/
-mv ~/tmp/z/z.1 /usr/local/share/man/man1
-rm -rf ~/tmp/z
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
