@@ -28,3 +28,7 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; h
 green=$(tput setaf 2)
 reset=$(tput sgr0)
 PS1='\W\[$green\]$(__git_ps1 "(%s)")\[$reset\]\$ '
+
+# Colors for Dark Terminal Themes
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
