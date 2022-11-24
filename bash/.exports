@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.git-prompt.sh
+[ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
 
 # Set bash as our shell, idk why anyone would use something else ;)
 shell="$(which bash)";

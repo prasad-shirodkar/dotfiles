@@ -30,16 +30,6 @@ stow --target=$HOME bash
 stow --target=$HOME vim
 stow --target=$HOME tmux
 
-# Git completion
-wget -O ~/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-chmod +x ~/.git-completion.bash
-. ~/.git-completion.bash
-
-# Git prompt
-wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-chmod +x ~/.git-prompt.sh
-. ~/.git-prompt.bash
-
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 

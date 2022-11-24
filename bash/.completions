@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.git-completion.bash
+[ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
 source <(kubectl completion bash)
 source <(helm completion bash)
