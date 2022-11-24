@@ -29,6 +29,10 @@ green=$(tput setaf 2)
 reset=$(tput sgr0)
 PS1='\W\[$green\]$(__git_ps1 "(%s)")\[$reset\]\$ '
 
-# Colors for Dark Terminal Themes
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# Colors for Dark Terminal Themes - linux
+export LSCOLORS=ExGxFxdxCxDxDxHBhDhCgC
+# Colors for Dark Terminal Themes - mac
+#export LSCOLORS=GxFxCxDxBxegedabagaced
+# Colors for Light Terminal Themes
+#export LSCOLORS=ExFxBxDxCxegedabagacad
