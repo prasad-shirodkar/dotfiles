@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Uncomment below for troubleshooting purposes
+#set -x
+
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 
 pushd $SCRIPT_DIR > /dev/null

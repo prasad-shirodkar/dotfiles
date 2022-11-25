@@ -1,3 +1,6 @@
+# Uncomment below for troubleshooting purposes
+#set -x
+
 # Source global definitions
 [ -f /etc/bashrc ] && . /etc/bashrc
 
