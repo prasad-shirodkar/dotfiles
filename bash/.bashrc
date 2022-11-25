@@ -15,7 +15,8 @@ unset file;
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
 
-[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
+_Z_NO_PROMPT_COMMAND=1
+[ -f /usr/local/bin/z.sh ] && source /usr/local/bin/z.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
