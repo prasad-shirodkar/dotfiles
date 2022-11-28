@@ -12,6 +12,12 @@ alias ls="ls -GFh"
 alias ll="ls -l"
 alias lla="ls -al"
 
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
 batdiff() {
   git diff --name-only --diff-filter=d | xargs bat --diff
 }

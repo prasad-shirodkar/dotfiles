@@ -36,6 +36,3 @@ export LSCOLORS=ExGxFxdxCxDxDxHBhDhCgC
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 # Colors for Light Terminal Themes
 #export LSCOLORS=ExFxBxDxCxegedabagacad
-
-export GREP_OPTIONS='–color=auto'
-export GREP_COLORS='1;35;40'
