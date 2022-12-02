@@ -28,6 +28,10 @@ help() {
   "$@" --help 2>&1 | bathelp
 }
 
+function gitReplace() {
+  git grep -l '$1' | xargs sed -i 's/$1/$2/g'
+}
+
 alias gl="git log"
 alias gcm="git checkout master"
 alias gcb="git checkout -b"
@@ -48,6 +52,7 @@ alias gca="git commit -a"
 alias gcar="git commit -a --reuse-message=HEAD"
 alias gcs="git commit -a --signoff"
 alias gcsr="git commit -a --signoff --reuse-message=HEAD"
+alias gr="gitReplace"
 
 # jenkins
 alias jst="brew services start jenkins-lts"
