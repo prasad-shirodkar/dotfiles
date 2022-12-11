@@ -47,6 +47,9 @@ let g:go_info_mode='gopls'
 let g:completor_filetype_map = {}
 let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
 
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
 " Initialize plugin system
 call plug#end()
 
