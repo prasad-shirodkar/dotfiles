@@ -96,3 +96,8 @@ alias txl='tmux ls'
 alias txn='tmux new -s'
 alias txa='tmux a -t'
 alias txk='tmux kill-session -t'
+
+# Markdown viewers
+alias md="markdown"
+alias mc="markcat"
+alias glow="glow -s dark -p"

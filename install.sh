@@ -36,4 +36,10 @@ $(brew --prefix)/opt/fzf/install
 # https://github.com/golang/tools/tree/master/gopls#installation
 exists go && go install golang.org/x/tools/gopls@latest
 
+# https://github.com/BubuAnabelas/markcat
+npm install -g markcat
+
+# https://github.com/mermaid-js/mermaid-cli
+npm install -g @mermaid-js/mermaid-cli
+
 popd > /dev/null 

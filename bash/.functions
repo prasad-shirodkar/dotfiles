@@ -57,3 +57,11 @@ function airport_loop() {
  done
 }
 alias wifitest="airport_loop"
+
+function markdown() {
+  pandoc "$1" | lynx -stdin
+}
+
+function markcat() {
+  markcat "$1" | less -r
+}
