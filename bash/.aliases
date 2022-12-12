@@ -107,3 +107,6 @@ alias glow="glow -s dark -p"
 
 # Homebrew
 alias brewed="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup"
+
+# Clear the screen
+alias c="clear"
