@@ -55,3 +55,4 @@ call plug#end()
 
 " https://pragmaticpineapple.com/improving-vim-workflow-with-fzf/
 nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-g> :Rg<Cr>
