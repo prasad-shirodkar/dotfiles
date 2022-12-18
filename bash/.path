@@ -1,6 +1,21 @@
-# add gnubin for mac
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+HOMEBREW_PREFIX=$(brew --prefix)
+
+# most programs
+export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
+export MANPATH="${HOMEBREW_PREFIX}/share/man:$MANPATH"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
+
+# coreutils
+export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# gnu-sed
+export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:$PATH"
+export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+# gnu-tar
+export PATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin:$PATH"
+export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman:$MANPATH"
 
 export GROOVY_HOME="/usr/local/opt/groovy/libexec"
 export PATH=$GROOVY_HOME/bin:$PATH
