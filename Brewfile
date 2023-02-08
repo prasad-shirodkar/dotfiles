@@ -19,8 +19,8 @@ brew "bat"
 brew "gettext"
 brew "pcre2"
 brew "glib"
-brew "bazel"
-brew "bazelisk", link: false
+brew "bazel", link: false
+brew "bazelisk"
 brew "ccrypt"
 brew "cheat"
 brew "cmake"

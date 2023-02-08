@@ -32,7 +32,8 @@ help() {
 }
 
 function gitReplace() {
-  git grep -l '$1' | xargs sed -i 's/$1/$2/g'
+  git grep -l '$1' | xargs sed -i "s/$1/$2/g"
+  #git grep -l '$1' | xargs -0 -n 1 sed -i "s/$1/$2/g"
 }
 
 alias gl="git log"
