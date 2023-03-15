@@ -108,7 +108,7 @@ alias mc="markcat"
 alias glow="glow -s dark -p"
 
 # Homebrew
-alias brewed="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup"
+alias brewed="brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup"
 
 # Clear the screen
 alias c="clear"
