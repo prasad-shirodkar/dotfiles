@@ -42,11 +42,4 @@ npm install -g markcat
 # https://github.com/mermaid-js/mermaid-cli
 npm install -g @mermaid-js/mermaid-cli
 
-ruby_version="3.1.3"
-if [ ! -d "~/.rbenv/versions/$ruby_version" ]; then
-  eval "$(rbenv init - bash)"
-  rbenv global $ruby_version
-  rbenv install $ruby_version
-endif
-
 popd > /dev/null 

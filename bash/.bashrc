@@ -29,4 +29,9 @@ test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/bre
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # https://github.com/rbenv/rbenv (rbenv init)
+ruby_version="3.1.3"
+if [[ ! -d ~/.rbenv/versions/$ruby_version ]]; then
+  rbenv global $ruby_version
+  rbenv install $ruby_version
+fi
 eval "$(rbenv init - bash)"
