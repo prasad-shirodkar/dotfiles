@@ -112,3 +112,5 @@ alias brewed="brew update && brew upgrade && brew upgrade --cask --force --greed
 
 # Clear the screen
 alias c="clear"
+
+alias assh="autossh -M 0"
