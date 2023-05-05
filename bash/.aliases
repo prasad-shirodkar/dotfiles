@@ -37,6 +37,7 @@ function gitReplace() {
 }
 
 alias gl="git log"
+alias gc="git checkout"
 alias gcm="git checkout master"
 alias gcb="git checkout -b"
 alias gmm="git merge master"
