@@ -2,6 +2,8 @@
 
 [ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
+#eval "$(_OCI_COMPLETE=source oci)"
+
 source <(kubectl completion bash)
 source <(helm completion bash)
 source <(kind completion bash)
