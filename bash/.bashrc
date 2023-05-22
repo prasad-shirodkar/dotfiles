@@ -34,4 +34,8 @@ if [[ ! -d ~/.rbenv/versions/$ruby_version ]]; then
   rbenv global $ruby_version
   rbenv install $ruby_version
 fi
-eval "$(rbenv init - bash)"
+
+case "$PATH:" in
+  *"$HOME/.rbenv/shims:"*) :;; # already there
+  *) if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi;;
+esac
