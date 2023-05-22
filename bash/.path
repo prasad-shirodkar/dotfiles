@@ -1,21 +1,34 @@
-HOMEBREW_PREFIX=$(brew --prefix)
+#!/usr/bin/env bash
 
-# most programs
-export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
-export MANPATH="${HOMEBREW_PREFIX}/share/man:$MANPATH"
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
+SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}"); pwd -P)
+source $SCRIPT_DIR/.functions
 
-# coreutils
-export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:$MANPATH"
+pushd $SCRIPT_DIR > /dev/null
 
-# gnu-sed
-export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:$PATH"
-export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman:$MANPATH"
+if exists brew; then
+  HOMEBREW_PREFIX=$(brew --prefix)
 
-# gnu-tar
-export PATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin:$PATH"
-export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman:$MANPATH"
+  # most programs
+  pathmunge ${HOMEBREW_PREFIX}/bin
+  export MANPATH="${HOMEBREW_PREFIX}/share/man:$MANPATH"
+  export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
 
-export GROOVY_HOME="/usr/local/opt/groovy/libexec"
-export PATH=$GROOVY_HOME/bin:$PATH
+  # coreutils
+  pathmunge ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:$MANPATH"
+
+  # gnu-sed
+  pathmunge ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+  # gnu-tar
+  pathmunge ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman:$MANPATH"
+fi
+
+if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
+  export GROOVY_HOME="/usr/local/opt/groovy/libexec"
+  pathmunge $GROOVY_HOME/bin
+fi
+
+popd > /dev/null
