@@ -8,6 +8,7 @@ source <(kubectl completion bash)
 source <(helm completion bash)
 source <(kind completion bash)
 source <(kubebuilder completion bash)
+source <(clusterctl completion bash)
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
