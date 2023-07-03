@@ -58,6 +58,19 @@ function airport_loop() {
 }
 alias wifitest="airport_loop"
 
+function toggle_mac_dock() {
+ if [[ ! is_macos ]]; then
+  echo "This is not macos"
+  exit 1
+ fi
+ local curr=$(defaults read com.apple.Dock autohide)
+ if [[ $curr -eq 0 ]]; then
+   defaults write com.apple.dock autohide -bool true; killall Dock
+ else
+   defaults write com.apple.dock autohide -bool false; killall Dock
+ fi
+}
+
 function markdown() {
   pandoc "$1" | lynx -stdin
 }
