@@ -24,18 +24,4 @@ _Z_NO_PROMPT_COMMAND=1
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-# https://github.com/rbenv/rbenv (rbenv init)
-ruby_version="3.1.3"
-if [[ ! -d ~/.rbenv/versions/$ruby_version ]]; then
-  rbenv global $ruby_version
-  rbenv install $ruby_version
-fi
-
-case "$PATH:" in
-  *"$HOME/.rbenv/shims:"*) :;; # already there
-  *) if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi;;
-esac
