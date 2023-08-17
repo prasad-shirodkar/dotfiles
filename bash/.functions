@@ -16,6 +16,10 @@ function is_linux() {
   [ "$platform" == "Linux" ]
 }
 
+function docker_image_size() {
+  docker inspect -f "{{ .Size }}" "$1" | numfmt --to=si
+}
+
 function delete_docker_images() {
  docker rmi $(docker images | grep "$1") -f
 }
@@ -101,4 +105,25 @@ function git_branch_delete() {
   else
     echo "branch name argument missing"
   fi
+}
+
+# repository register recursive using mr - a Multiple Repository management tool
+function repository_register_recursive() {
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c 'cd "$0"; mr register; cd ..' {} \;
+}
+
+# repository fetch recursive using mr - a Multiple Repository management tool
+function repository_fetch_recursive() {
+  mr -j5 fetch 
+}
+
+# repository update recursive using mr - a Multiple Repository management tool
+function repository_update_recursive() {
+  #find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c 'cd "$0"; mr -j5 update; cd ..' {} \;
+  mr -j5 update
+}
+
+# go mod download using mr - a Multiple Repository management tool
+function go_mod_download_recursive() {
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c 'cd "$0"; go mod download; cd ..' {} \;
 }
