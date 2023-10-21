@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source $SCRIPT_DIR/bash/.functions
 
 pushd $SCRIPT_DIR > /dev/null
@@ -29,6 +29,7 @@ fi
 stow --target=$HOME bash
 stow --target=$HOME vim
 stow --target=$HOME tmux
+stow --target=$HOME screen
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}"); pwd -P)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source $SCRIPT_DIR/.functions
 
 pushd $SCRIPT_DIR > /dev/null
