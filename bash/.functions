@@ -114,7 +114,7 @@ function repository_register_recursive() {
 
 # repository fetch recursive using mr - a Multiple Repository management tool
 function repository_fetch_recursive() {
-  mr -j5 fetch 
+  mr -j5 fetch --force --tags
 }
 
 # repository update recursive using mr - a Multiple Repository management tool
