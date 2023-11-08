@@ -5,7 +5,7 @@ source $SCRIPT_DIR/.functions
 
 pushd $SCRIPT_DIR > /dev/null
 
-if [[ exists brew ]]; then
+if exists brew; then
   # https://docs.brew.sh/Manpage#shellenv-bashcshfishpwshshtcshzsh
   eval "$(brew shellenv)"
 
