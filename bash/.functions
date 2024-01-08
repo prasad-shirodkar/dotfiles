@@ -39,6 +39,14 @@ help() {
 }
 
 function cloneAllGithubOrg() {
+  if [[ -z "$GITHUB_ORG" ]]; then
+    echo "error: GITHUB_ORG env var must be defined"
+    return 1
+  fi
+  if [[ -z "$GITHUB_TOKEN" ]]; then
+    echo "error: GITHUB_TOKEN env var must be defined"
+    return 1
+  fi
   # https://gist.github.com/caniszczyk/3856584?permalink_comment_id=3883313#gistcomment-3883313
   page=1
   while links=($(curl -H "Authorization: token ${GITHUB_TOKEN}" -s "https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100&page=${page}" | jq -rc '.[] | {ssh_url} | .ssh_url'));  [[ "$links" ]]
