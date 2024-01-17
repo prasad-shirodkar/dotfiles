@@ -135,3 +135,8 @@ function repository_update_recursive() {
 function go_mod_download_recursive() {
   find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c 'cd "$0"; go mod download; cd ..' {} \;
 }
+
+function mcd() {
+  mkdir -p $1
+  cd $1
+}
