@@ -18,7 +18,9 @@ shopt -s histappend;
 _Z_NO_PROMPT_COMMAND=1
 [ -f /usr/local/bin/z.sh ] && source /usr/local/bin/z.sh
 
+# todo remove fzf.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 
 # https://docs.brew.sh/Homebrew-on-Linux
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
