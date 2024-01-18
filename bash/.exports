@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+# todo remove first entry
 [ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
+[ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt
 
 # Set bash as our shell, idk why anyone would use something else ;)
 shell="$(which bash)";
