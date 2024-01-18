@@ -30,6 +30,13 @@ nnoremap rv :w!<Esc>:source $MYVIMRC<CR>
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins installation list
 " https://github.com/junegunn/vim-plug
 call plug#begin()
