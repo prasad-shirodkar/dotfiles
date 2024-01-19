@@ -10,7 +10,9 @@ source $SCRIPT_DIR/bash/.functions
 
 pushd $SCRIPT_DIR > /dev/null
 
-if exists brew; then
+if exists apt; then
+  aptinstall
+elif exists brew; then
   brew update && brew upgrade
   brew bundle check
   if [[ $? -ne 0 ]]; then
