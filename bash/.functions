@@ -144,7 +144,7 @@ function mcd() {
 function aptinstall() {
   exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
-  openvpn nmap file awscli pandoc lynx && \
+  openvpn nmap file awscli pandoc lynx info && \
   install_glow
 }
 
@@ -152,8 +152,10 @@ function install_glow() {
   # https://github.com/charmbracelet/glow
   if exists apt; then
     sudo mkdir -p /etc/apt/keyrings
-    curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-    echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+    if [ ! -f "/etc/apt/keyrings/charm.gpg" ]; then
+      curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+    fi
     sudo apt update && sudo apt install glow
   fi
 }
