@@ -33,6 +33,11 @@ elif [[ "$INSTALL_BREW" -eq 1 ]]; then
   brew bundle install --file=$SCRIPT_DIR/Brewfile
 fi
 
+# Run all scripts in programs directory. Installing via apt for now.
+if exists apt; then
+  for f in $SCRIPT_DIR/programs/*.sh; do bash "$f" -H; done
+fi
+
 stow --target=$HOME bash
 stow --target=$HOME vim
 stow --target=$HOME tmux
