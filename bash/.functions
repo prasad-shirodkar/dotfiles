@@ -16,6 +16,34 @@ function is_linux() {
   [ "$platform" == "Linux" ]
 }
 
+function enable_docker_service() {
+  sudo systemctl enable docker.service
+  sudo systemctl enable containerd.service
+  sudo systemctl status docker.service
+  sudo systemctl status containerd.service
+}
+
+function disable_docker_service() {
+  sudo systemctl disable docker.service
+  sudo systemctl disable containerd.service
+  sudo systemctl status docker.service
+  sudo systemctl status containerd.service
+}
+
+function start_docker_service() {
+  sudo systemctl start docker.service
+  sudo systemctl start containerd.service
+  sudo systemctl status docker.service
+  sudo systemctl status containerd.service
+}
+
+function stop_docker_service() {
+  sudo systemctl stop docker.service
+  sudo systemctl stop containerd.service
+  sudo systemctl status docker.service
+  sudo systemctl status containerd.service
+}
+
 function docker_image_size() {
   docker inspect -f "{{ .Size }}" "$1" | numfmt --to=si
 }
