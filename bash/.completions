@@ -3,6 +3,7 @@
 [ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
 eval "source <(kubectl completion bash)"
+eval "source <(kind completion bash)"
 #eval "$(_OCI_COMPLETE=source oci)"
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
