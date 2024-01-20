@@ -16,6 +16,18 @@ function is_linux() {
   [ "$platform" == "Linux" ]
 }
 
+function docker_login() {
+  if [ ! -r $HOME/.dockerhub_token.txt ]; then
+    echo "docker token file not found"
+    return 1
+  fi
+  cat $HOME/.dockerhub_token.txt | docker login --username pshirodkar --password-stdin
+  if [ $? -ne 0 ]; then
+    echo "docker login failed"
+    return 1
+  fi
+}
+
 function enable_docker_service() {
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
