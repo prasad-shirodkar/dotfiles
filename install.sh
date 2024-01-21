@@ -10,6 +10,9 @@ source $SCRIPT_DIR/bash/.functions
 
 pushd $SCRIPT_DIR > /dev/null
 
+# make temporary directory in directory
+mkdir -p $HOME/tmp -m 700
+
 if exists apt; then
   aptinstall
 elif exists brew; then
@@ -31,6 +34,15 @@ elif [[ "$INSTALL_BREW" -eq 1 ]]; then
     fi
   fi
   brew bundle install --file=$SCRIPT_DIR/Brewfile
+fi
+
+# generic software installed on linux without package manager
+if [[ is_linux ]]; then
+  git clone https://github.com/rupa/z/ ~/tmp/z
+  chmod +x ~/tmp/z/z.sh
+  mv ~/tmp/z/z.sh /usr/local/bin/
+  mv ~/tmp/z/z.1 /usr/local/share/man/man1
+  rm -rf ~/tmp/z
 fi
 
 # Run all scripts in programs directory. Installing via apt for now.
