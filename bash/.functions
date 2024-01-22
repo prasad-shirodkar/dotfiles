@@ -181,7 +181,7 @@ function mcd() {
   cd $1
 }
 
-function aptinstall() {
+function install_via_apt() {
   exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
   openvpn nmap file awscli pandoc lynx info autojump neofetch && \
@@ -197,5 +197,28 @@ function install_glow() {
       echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
     fi
     sudo apt update && sudo apt install glow
+  fi
+}
+
+function install_rupa_z() {
+  if [[ is_linux ]]; then
+    git clone https://github.com/rupa/z/ ~/tmp/z
+    chmod +x ~/tmp/z/z.sh
+    sudo mv ~/tmp/z/z.sh /usr/local/bin/
+    sudo mkdir -p /usr/local/share/man/man1
+    sudo mv ~/tmp/z/z.1 /usr/local/share/man/man1/
+    rm -rf ~/tmp/z
+  fi
+}
+
+function install_kind() {
+  # https://kind.sigs.k8s.io/docs/user/quick-start#installing-from-release-binaries
+  if [[ is_linux ]]; then
+    # For AMD64 / x86_64
+    [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+    # For ARM64
+    [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-arm64
+    chmod +x ./kind
+    sudo mv ./kind /usr/local/bin/kind
   fi
 }
