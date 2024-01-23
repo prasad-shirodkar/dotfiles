@@ -222,3 +222,27 @@ function install_kind() {
     sudo mv ./kind /usr/local/bin/kind
   fi
 }
+
+function update() {
+  if exists apt; then
+    sudo echo -e "updating available software\n----"
+    sudo apt-get update;
+    echo -e "\nupgrading software\n----"
+    sudo apt-get upgrade;
+    echo -e "\nremoving obsolete dependency software\n----"
+    sudo apt-get autoremove --purge;
+    echo -e "\nremoving software in local cache\n----"
+    sudo apt-get clean;
+    echo "Done"
+  elif exists dnf; then
+    sudo echo -e "updating available software\n----"
+    sudo dnf upgrade
+    echo -e "\nremoving obsolete dependency software\n----"
+    sudo dnf autoremove
+    echo -e "\nremoving software in local cache\n----"
+    sudo dnf clean all
+    echo "Done"
+  if exists brew; then
+    brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
+  fi
+}

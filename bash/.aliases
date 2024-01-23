@@ -110,9 +110,6 @@ alias md="markdown"
 alias mc="markcat"
 alias glow="glow -s dark -p"
 
-# Homebrew
-alias brewed="brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all"
-
 # Clear the screen
 alias c="clear"
 
