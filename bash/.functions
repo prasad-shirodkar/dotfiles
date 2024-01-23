@@ -242,7 +242,7 @@ function update() {
     echo -e "\nremoving software in local cache\n----"
     sudo dnf clean all
     echo "Done"
-  if exists brew; then
+  elif exists brew; then
     brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
   fi
 }
