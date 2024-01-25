@@ -98,7 +98,7 @@ function cloneAllGithubOrg() {
 
 #mac internet troubleshooting
 function airport_loop() {
- if [[ ! is_macos ]]; then
+ if ! is_macos; then
   echo "This is not macos"
   exit 1
  fi
@@ -111,7 +111,7 @@ function airport_loop() {
 alias wifitest="airport_loop"
 
 function toggle_mac_dock() {
- if [[ ! is_macos ]]; then
+ if ! is_macos; then
   echo "This is not macos"
   exit 1
  fi
@@ -201,7 +201,7 @@ function install_glow() {
 }
 
 function install_rupa_z() {
-  if [[ is_linux ]]; then
+  if is_linux; then
     git clone https://github.com/rupa/z/ ~/tmp/z
     chmod +x ~/tmp/z/z.sh
     sudo mv ~/tmp/z/z.sh /usr/local/bin/
@@ -213,7 +213,7 @@ function install_rupa_z() {
 
 function install_kind() {
   # https://kind.sigs.k8s.io/docs/user/quick-start#installing-from-release-binaries
-  if [[ is_linux ]]; then
+  if is_linux; then
     # For AMD64 / x86_64
     [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
     # For ARM64
@@ -224,25 +224,27 @@ function install_kind() {
 }
 
 function update() {
-  if exists apt; then
-    sudo echo -e "updating available software\n----"
-    sudo apt-get update;
-    echo -e "\nupgrading software\n----"
-    sudo apt-get upgrade;
-    echo -e "\nremoving obsolete dependency software\n----"
-    sudo apt-get autoremove --purge;
-    echo -e "\nremoving software in local cache\n----"
-    sudo apt-get clean;
-    echo "Done"
-  elif exists dnf; then
-    sudo echo -e "updating available software\n----"
-    sudo dnf upgrade
-    echo -e "\nremoving obsolete dependency software\n----"
-    sudo dnf autoremove
-    echo -e "\nremoving software in local cache\n----"
-    sudo dnf clean all
-    echo "Done"
-  elif exists brew; then
-    brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
+  if is_linux; then
+    if exists apt; then
+      sudo echo -e "updating available software\n----"
+      sudo apt-get update;
+      echo -e "\nupgrading software\n----"
+      sudo apt-get upgrade;
+      echo -e "\nremoving obsolete dependency software\n----"
+      sudo apt-get autoremove --purge;
+      echo -e "\nremoving software in local cache\n----"
+      sudo apt-get clean;
+      echo "Done"
+    elif exists dnf; then
+      sudo echo -e "updating available software\n----"
+      sudo dnf upgrade
+      echo -e "\nremoving obsolete dependency software\n----"
+      sudo dnf autoremove
+      echo -e "\nremoving software in local cache\n----"
+      sudo dnf clean all
+      echo "Done"
+    fi
+  elif is_macos; then
+    exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
   fi
 }

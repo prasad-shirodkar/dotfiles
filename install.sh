@@ -25,7 +25,7 @@ elif [[ "$INSTALL_BREW" -eq 1 ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # https://docs.brew.sh/Homebrew-on-Linux
-  if [[ is_linux ]]; then
+  if is_linux; then
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     if exists yum; then
@@ -37,7 +37,7 @@ elif [[ "$INSTALL_BREW" -eq 1 ]]; then
 fi
 
 # generic software installed on linux without package manager
-if [[ is_linux ]]; then
+if is_linux; then
   install_rupa_z
   install_kind
 fi
