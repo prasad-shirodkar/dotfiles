@@ -1,4 +1,4 @@
-!# /usr/bin/env bash
+#!/usr/bin/env bash
 
 # https://docs.docker.com/engine/install/debian/
 
