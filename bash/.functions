@@ -184,19 +184,35 @@ function mcd() {
 function install_via_apt() {
   exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
-  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk && \
+  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk
   install_glow
+  install_kubectl
 }
 
 function install_glow() {
   # https://github.com/charmbracelet/glow
   if exists apt; then
-    sudo mkdir -p /etc/apt/keyrings
+    sudo mkdir -p -m 755 /etc/apt/keyrings
     if [ ! -f "/etc/apt/keyrings/charm.gpg" ]; then
       curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
       echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
     fi
-    sudo apt update && sudo apt install glow
+    sudo apt update && sudo apt install -y glow
+  fi
+}
+
+function install_kubectl() {
+  # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
+  if exists apt; then
+    sudo apt-get update
+    # apt-transport-https may be a dummy package; if so, you can skip that package
+    sudo apt-get install -y apt-transport-https ca-certificates curl
+    sudo mkdir -p -m 755 /etc/apt/keyrings
+    if [ ! -f "/etc/apt/keyrings/kubernetes-apt-keyring.gpg" ]; then
+      curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+      echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    fi
+    sudo apt update && sudo apt install -y kubectl
   fi
 }
 
