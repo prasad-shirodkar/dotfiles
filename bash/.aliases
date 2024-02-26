@@ -116,3 +116,5 @@ alias c="clear"
 alias assh="autossh -M 0"
 
 alias rgh="rg --hidden"
+
+alias fman="compgen -c | fzf | xargs man"
