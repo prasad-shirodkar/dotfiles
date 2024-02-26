@@ -16,6 +16,14 @@ function is_linux() {
   [ "$platform" == "Linux" ]
 }
 
+function alternate_aliases() {
+  # On debian, fd package is fdfind instead. So make alias back to fd
+  if exists fdfind; then
+    alias fd="fdfind"
+  fi
+}
+alternate_aliases
+
 function docker_login() {
   if [ ! -r $HOME/.dockerhub_token.txt ]; then
     echo "docker token file not found"
@@ -129,6 +137,11 @@ function markdown() {
 
 function markcat() {
   markcat "$1" | less -r
+}
+
+# find markdown files recursively and preview
+function find_md() {
+  fd '.md$' | xargs -I _ -- bat --paging=always _
 }
 
 # https://pagure.io/setup/blob/master/f/profile
