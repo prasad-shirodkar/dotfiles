@@ -17,9 +17,13 @@ function is_linux() {
 }
 
 function alternate_aliases() {
-  # On debian, fd package is fdfind instead. So make alias back to fd
+  # On debian, fd-find package contains fdfind instead. So make alias back to fd
   if exists fdfind; then
     alias fd="fdfind"
+  fi
+  # On debian, bat package contains batcat instead. So make alias back to bat
+  if exists batcat; then
+    alias bat="batcat"
   fi
 }
 alternate_aliases
@@ -197,7 +201,7 @@ function mcd() {
 function install_via_apt() {
   exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y apt-file curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
-  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu
+  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find
   install_glow
   install_kubectl
 }
