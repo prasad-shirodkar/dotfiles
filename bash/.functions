@@ -16,6 +16,18 @@ function is_linux() {
   [ "$platform" == "Linux" ]
 }
 
+function alternate_aliases() {
+  # On debian, fd-find package contains fdfind instead. So make alias back to fd
+  if exists fdfind; then
+    alias fd="fdfind"
+  fi
+  # On debian, bat package contains batcat instead. So make alias back to bat
+  if exists batcat; then
+    alias bat="batcat"
+  fi
+}
+alternate_aliases
+
 function docker_login() {
   if [ ! -r $HOME/.dockerhub_token.txt ]; then
     echo "docker token file not found"
@@ -131,6 +143,11 @@ function markcat() {
   markcat "$1" | less -r
 }
 
+# find markdown files recursively and preview
+function find_md() {
+  fd '.md$' | xargs -I _ -- bat --paging=always _
+}
+
 # https://pagure.io/setup/blob/master/f/profile
 pathmunge () {
     case ":${PATH}:" in
@@ -182,21 +199,37 @@ function mcd() {
 }
 
 function install_via_apt() {
-  exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y curl wget vim-gtk3 xsel \
+  exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y apt-file curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
-  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk && \
+  openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find
   install_glow
+  install_kubectl
 }
 
 function install_glow() {
   # https://github.com/charmbracelet/glow
   if exists apt; then
-    sudo mkdir -p /etc/apt/keyrings
+    sudo mkdir -p -m 755 /etc/apt/keyrings
     if [ ! -f "/etc/apt/keyrings/charm.gpg" ]; then
       curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
       echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
     fi
-    sudo apt update && sudo apt install glow
+    sudo apt update && sudo apt install -y glow
+  fi
+}
+
+function install_kubectl() {
+  # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
+  if exists apt; then
+    sudo apt-get update
+    # apt-transport-https may be a dummy package; if so, you can skip that package
+    sudo apt-get install -y apt-transport-https ca-certificates curl
+    sudo mkdir -p -m 755 /etc/apt/keyrings
+    if [ ! -f "/etc/apt/keyrings/kubernetes-apt-keyring.gpg" ]; then
+      curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+      echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    fi
+    sudo apt update && sudo apt install -y kubectl
   fi
 }
 
@@ -247,4 +280,10 @@ function update() {
   elif is_macos; then
     exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
   fi
+}
+
+# Top k largest files in current directory recursive
+function duh() {
+  local num="${1:-10}"
+  du -ah . | sort -hr | head -n $num
 }
