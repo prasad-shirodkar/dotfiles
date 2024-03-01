@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+alias v="vi"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
