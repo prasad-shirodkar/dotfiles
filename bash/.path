@@ -27,6 +27,10 @@ if exists brew; then
   # gnu-tar
   pathmunge ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin
   export MANPATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman:$MANPATH"
+  
+  # gnu make
+  pathmunge ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnuman:$MANPATH"
 fi
 
 if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
