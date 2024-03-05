@@ -292,3 +292,7 @@ function duh() {
   local num="${1:-10}"
   du -ah . | sort -hr | head -n $num
 }
+
+function extract_rpm() {
+  rpm2cpio "$1" | cpio -idmv
+}
