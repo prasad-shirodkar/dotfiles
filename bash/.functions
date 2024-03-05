@@ -139,8 +139,13 @@ function markdown() {
   pandoc "$1" | lynx -stdin
 }
 
-function markcat() {
-  markcat "$1" | less -r
+function markdown_browser_preview() {
+  pandoc "$1" > ~/tmp/"$1".html
+  if is_linux; then
+    xdg-open ~/tmp/"$1".html
+  elif is_macos; then
+    open ~/tmp/"$1".html
+  fi
 }
 
 # find markdown files recursively and preview

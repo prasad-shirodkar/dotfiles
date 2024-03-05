@@ -110,7 +110,7 @@ alias txk='tmux kill-session -t'
 
 # Markdown viewers
 alias md="markdown"
-alias mc="markcat"
+alias mdb="markdown_browser_preview"
 alias glow="glow -s dark -p"
 
 # Clear the screen
