@@ -282,6 +282,15 @@ function install_google_chrome() {
     sudo apt install google-chrome-stable
   fi
 }
+
+function install_upgrade_unifi() {
+  # https://help.ui.com/hc/en-us/articles/220066768-Updating-and-Installing-Self-Hosted-UniFi-Network-Servers-Linux
+  # https://community.ui.com/questions/ccbc7530-dd61-40a7-82ec-22b17f027776
+  if exists apt; then
+    rm unifi-latest.sh &> /dev/null; wget https://get.glennr.nl/unifi/install/install_latest/unifi-latest.sh && sudo bash unifi-latest.sh
+  fi
+}
+
 function update() {
   if is_linux; then
     if exists apt; then
