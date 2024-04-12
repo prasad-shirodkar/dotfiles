@@ -53,10 +53,8 @@ stow --target=$HOME tmux
 stow --target=$HOME screen
 
 # To install useful key bindings and fuzzy completion:
-if exists brew; then
-  $(brew --prefix)/opt/fzf/install
-else
-  [[ -x "/usr/local/opt/fzf/install" ]] && . "/usr/local/opt/fzf/install"
+if exists fzf; then
+  eval "$(fzf --bash)"
 fi
 
 # https://github.com/golang/tools/tree/master/gopls#installation
