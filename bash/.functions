@@ -209,9 +209,12 @@ function install_via_apt() {
   openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find \
   hardinfo
   install_glow
+  install_rupa_z
   install_kubectl
+  install_kind
   install_sublimetext
   install_google_chrome
+  install_upgrade_unifi
 }
 
 function install_glow() {
