@@ -38,6 +38,8 @@ function gitReplace() {
   #git grep -l '$1' | xargs -0 -n 1 sed -i "s/$1/$2/g"
 }
 
+alias gp="git pull"
+alias gps="git push"
 alias gl="git log"
 alias gc="git checkout"
 alias gcm="git checkout master"
