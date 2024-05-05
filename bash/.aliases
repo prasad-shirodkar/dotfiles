@@ -38,6 +38,8 @@ function gitReplace() {
   #git grep -l '$1' | xargs -0 -n 1 sed -i "s/$1/$2/g"
 }
 
+alias gp="git pull"
+alias gps="git push"
 alias gl="git log"
 alias gc="git checkout"
 alias gcm="git checkout master"
@@ -47,6 +49,7 @@ alias gbD="git branch -D"
 alias gmm="git merge master"
 alias grv="git remote -v"
 alias gs="git status"
+alias gfa="git fetch --all"
 alias gfo="git fetch origin"
 alias gfop="git fetch origin --prune"
 alias gfu="git fetch upstream"
