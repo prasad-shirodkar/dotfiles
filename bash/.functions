@@ -331,3 +331,7 @@ function duh() {
 function extract_rpm() {
   rpm2cpio "$1" | cpio -idmv
 }
+
+function field() {
+  awk '{print $'"$1"'}'
+}
