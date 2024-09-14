@@ -299,14 +299,14 @@ function install_upgrade_unifi() {
 function update() {
   if is_linux; then
     if exists apt; then
-      sudo echo -e "updating available software\n----"
-      sudo apt-get update;
-      echo -e "\nupgrading software\n----"
-      sudo apt-get upgrade;
-      echo -e "\nremoving obsolete dependency software\n----"
-      sudo apt-get autoremove --purge;
-      echo -e "\nremoving software in local cache\n----"
-      sudo apt-get clean;
+      #sudo echo -e "updating available software\n----"
+      print_and_execute sudo apt-get update;
+      #echo -e "\nupgrading software\n----"
+      print_and_execute sudo apt-get upgrade;
+      #echo -e "\nremoving obsolete dependency software\n----"
+      print_and_execute sudo apt-get autoremove --purge;
+      #echo -e "\nremoving software in local cache\n----"
+      print_and_execute sudo apt-get clean;
       echo "Done"
     elif exists dnf; then
       sudo echo -e "updating available software\n----"
