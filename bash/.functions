@@ -335,3 +335,8 @@ function extract_rpm() {
 function field() {
   awk '{print $'"$1"'}'
 }
+
+function print_and_execute() {
+  echo "+ $@" >&2
+  "$@"
+}
