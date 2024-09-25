@@ -27,12 +27,6 @@ batdiff() {
   git diff --name-only --diff-filter=d | xargs bat --diff
 }
 
-# in your .bashrc/.zshrc/*rc
-alias bathelp='bat --plain --language=help'
-help() {
-  "$@" --help 2>&1 | bathelp
-}
-
 function gitReplace() {
   git grep -l '$1' | xargs sed -i "s/$1/$2/g"
   #git grep -l '$1' | xargs -0 -n 1 sed -i "s/$1/$2/g"
