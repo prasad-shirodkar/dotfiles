@@ -52,17 +52,15 @@ stow --target=$HOME vim
 stow --target=$HOME tmux
 stow --target=$HOME screen
 
-# To install useful key bindings and fuzzy completion:
-if exists fzf; then
-  eval "$(fzf --bash)"
-fi
-
 # https://github.com/golang/tools/tree/master/gopls#installation
 exists go && go install golang.org/x/tools/gopls@latest
 
 if [[ ! -f $HOME/.bashrc ]]; then
   sudo touch $HOME/.bashrc
 fi
-echo "[ -f ~/.bashrc.me ] && source ~/.bashrc.me" >> $HOME/.bashrc
+grep --fixed-strings '[[ -f ~/.bashrc.me ]] && source ~/.bashrc.me' $HOME/.bashrc
+if [[ $? -ne 0 ]]; then
+  echo '[[ -f ~/.bashrc.me ]] && source ~/.bashrc.me' >> $HOME/.bashrc
+fi
 
 popd > /dev/null 

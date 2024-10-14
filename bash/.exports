@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # todo remove first entry
-[ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
-[ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt
+([ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh) && \
+	([ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt) && \
+	([ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh) && \
+	([ -f /usr/share/doc/git/contrib/completion/git-prompt.sh ] && source /usr/share/doc/git/contrib/completion/git-prompt.sh)
 
 # Set bash as our shell, idk why anyone would use something else ;)
 shell="$(which bash)";
@@ -25,7 +27,7 @@ export HISTIGNORE="history:ls:pwd:";
 #unset PROMPT_COMMAND
 
 # After each command, append to the history file and reread it
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 green=$(tput setaf 2)
 reset=$(tput sgr0)
