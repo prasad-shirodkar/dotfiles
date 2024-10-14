@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# todo remove first entry
-([ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh) && \
-	([ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt) && \
-	([ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh) && \
-	([ -f /usr/share/doc/git/contrib/completion/git-prompt.sh ] && source /usr/share/doc/git/contrib/completion/git-prompt.sh)
+[ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
+[ $? -ne 0 ] && [ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt
+[ $? -ne 0 ] && [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh
+[ $? -ne 0 ] && [ -f /usr/share/doc/git/contrib/completion/git-prompt.sh ] && source /usr/share/doc/git/contrib/completion/git-prompt.sh
 
 # Set bash as our shell, idk why anyone would use something else ;)
 shell="$(which bash)";
@@ -31,7 +30,7 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 
 green=$(tput setaf 2)
 reset=$(tput sgr0)
-PS1='\W\[$green\]$(__git_ps1 "(%s)")\[$reset\] \$ '
+export PS1='\W\[$green\]$(__git_ps1 "(%s)")\[$reset\] \$ '
 
 export CLICOLOR=1
 # Colors for Dark Terminal Themes - linux
