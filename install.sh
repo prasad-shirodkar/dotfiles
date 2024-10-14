@@ -58,9 +58,17 @@ exists go && go install golang.org/x/tools/gopls@latest
 if [[ ! -f $HOME/.bashrc ]]; then
   sudo touch $HOME/.bashrc
 fi
-grep --fixed-strings '[[ -f ~/.bashrc.me ]] && source ~/.bashrc.me' $HOME/.bashrc
+grep --fixed-strings '. ~/.bashrc.me' $HOME/.bashrc
 if [[ $? -ne 0 ]]; then
-  echo '[[ -f ~/.bashrc.me ]] && source ~/.bashrc.me' >> $HOME/.bashrc
+  echo '[[ -f ~/.bashrc.me ]] && . ~/.bashrc.me' >> $HOME/.bashrc
+fi
+
+if [[ ! -f $HOME/.bash_profile ]]; then
+  sudo touch $HOME/.bash_profile
+fi
+grep --fixed-strings '. ~/.bashrc' ~/.bash_profile
+if [[ $? -ne 0 ]]; then
+  echo '[[ -f ~/.bashrc ]] && . ~/.bashrc' >> $HOME/.bash_profile
 fi
 
 popd > /dev/null 
