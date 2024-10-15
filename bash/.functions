@@ -299,26 +299,17 @@ function install_upgrade_unifi() {
 function update() {
   if is_linux; then
     if exists apt; then
-      #sudo echo -e "updating available software\n----"
       print_and_execute sudo apt-get update;
-      #echo -e "\nupgrading software\n----"
       print_and_execute sudo apt-get upgrade;
-      #echo -e "\nremoving obsolete dependency software\n----"
       print_and_execute sudo apt-get autoremove --purge;
-      #echo -e "\nremoving software in local cache\n----"
       print_and_execute sudo apt-get clean;
-      echo "Done"
     elif exists dnf; then
-      sudo echo -e "updating available software\n----"
-      sudo dnf upgrade
-      echo -e "\nremoving obsolete dependency software\n----"
-      sudo dnf autoremove
-      echo -e "\nremoving software in local cache\n----"
-      sudo dnf clean all
-      echo "Done"
+      print_and_execute sudo dnf upgrade;
+      print_and_execute sudo dnf autoremove;
+      print_and_execute sudo dnf clean all;
     fi
   elif is_macos; then
-    exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all 
+    print_and_execute exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all;
   fi
 }
 
