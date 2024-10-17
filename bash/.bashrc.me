@@ -24,7 +24,12 @@ _Z_NO_PROMPT_COMMAND=1
 
 # To install useful key bindings and fuzzy completion:
 if exists fzf; then
-  eval "$(fzf --bash)"
+  fzf --bash &> /dev/null
+  if [[ $? -eq 0 ]]; then
+    eval "$(fzf --bash)"
+  else
+    [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+  fi
 fi
 
 # https://docs.brew.sh/Homebrew-on-Linux
