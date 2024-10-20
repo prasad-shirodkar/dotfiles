@@ -36,10 +36,12 @@ elif [[ "$INSTALL_BREW" -eq 1 ]]; then
   brew bundle install --file=$SCRIPT_DIR/Brewfile
 fi
 
-# generic software installed on linux without package manager
 if is_linux; then
+  # generic software installed on linux without package manager
   install_rupa_z
   install_kind
+
+  ufw_execute
 fi
 
 # Run all scripts in programs directory. Installing via apt for now.

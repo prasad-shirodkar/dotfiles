@@ -207,7 +207,7 @@ function install_via_apt() {
   exists apt && sudo apt update && sudo apt full-upgrade -y && sudo apt install -y apt-file curl wget vim-gtk3 xsel \
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
   openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find fonts-indic \
-  hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat
+  hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat firmware-linux-nonfree firmware-misc-nonfree ufw
   install_glow
   install_rupa_z
   install_kubectl
@@ -330,4 +330,16 @@ function field() {
 function print_and_execute() {
   echo "+ $@" >&2
   "$@"
+}
+
+function ufw_execute() {
+  sudo ufw status &> /dev/null
+  if [ $? -ne 0 ]; then
+    echo "error: ufw not installed"
+    exit 1
+  fi
+  sudo ufw allow ssh
+  sudo ufw default deny incoming
+  sudo ufw default allow outgoing
+  sudo ufw enable
 }
