@@ -199,8 +199,7 @@ function go_mod_download_recursive() {
 }
 
 function mcd() {
-  mkdir -p $1
-  cd $1
+  mkdir -p "$1" && cd "$1"
 }
 
 function install_via_apt() {
