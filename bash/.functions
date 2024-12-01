@@ -298,17 +298,17 @@ function install_upgrade_unifi() {
 function update() {
   if is_linux; then
     if exists apt; then
-      print_and_execute sudo apt-get update;
-      print_and_execute sudo apt-get upgrade;
-      print_and_execute sudo apt-get autoremove --purge;
-      print_and_execute sudo apt-get clean;
+      print_execute sudo apt-get update;
+      print_execute sudo apt-get upgrade;
+      print_execute sudo apt-get autoremove --purge;
+      print_execute sudo apt-get clean;
     elif exists dnf; then
-      print_and_execute sudo dnf upgrade;
-      print_and_execute sudo dnf autoremove;
-      print_and_execute sudo dnf clean all;
+      print_execute sudo dnf upgrade;
+      print_execute sudo dnf autoremove;
+      print_execute sudo dnf clean all;
     fi
   elif is_macos; then
-    print_and_execute exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all;
+    print_execute exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all;
   fi
 }
 
@@ -326,8 +326,8 @@ function field() {
   awk '{print $'"$1"'}'
 }
 
-function print_and_execute() {
-  echo "+ $@" >&2
+function print_execute() {
+  printf "+ %s\n" "$*" >&2
   "$@"
 }
 
