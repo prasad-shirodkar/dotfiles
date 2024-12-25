@@ -326,7 +326,12 @@ function update() {
       print_execute sudo dnf clean all;
     fi
   elif is_macos; then
-    print_execute exists brew && brew update && brew upgrade && brew upgrade --cask --force --greedy && brew cleanup --prune=all;
+    if exists brew; then
+      print_execute brew update;
+      print_execute brew upgrade;
+      print_execute brew upgrade --cask --force --greedy;
+      print_execute brew cleanup --prune=all;
+    fi
   fi
 }
 
