@@ -219,7 +219,7 @@ function install_via_apt() {
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
   openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find fonts-indic \
   hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat firmware-linux-nonfree firmware-misc-nonfree ufw hdparm yt-dlp \
-  tlp tlp-rdw tp-smapi-dkms smartmontools
+  tlp tlp-rdw tp-smapi-dkms smartmontools debian-refcard debian-refcard doc-base
   install_intel_packages
   install_glow
   install_rupa_z
