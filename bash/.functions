@@ -219,8 +219,9 @@ function install_via_apt() {
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard \
   openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find fonts-indic \
   hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat firmware-linux-nonfree firmware-misc-nonfree ufw hdparm yt-dlp \
-  tlp tlp-rdw tp-smapi-dkms smartmontools debian-refcard debian-refcard doc-base
+  debian-refcard doc-base
   install_intel_packages
+  install_laptop_packages
   install_glow
   install_rupa_z
   install_kubectl
@@ -230,6 +231,15 @@ function install_via_apt() {
   install_upgrade_unifi
 }
 
+function install_laptop_packages() {
+  laptop-detect --verbose &> /dev/null
+  if [ $? -eq 0 ]; then
+    exists apt && sudo apt install tlp tlp-rdw tp-smapi-dkms smartmontools
+  else
+    print "error: not a laptop"
+    return 1
+  fi
+}
 function install_intel_packages() {
   is_cpu_intel && exists apt && sudo apt install -y firmware-intel-graphics firmware-intel-misc firmware-mediatek intel-microcode \
 	  firmware-iwlwifi firmware-ipw2x00 firmware-intel-graphics firmware-intel-sound
