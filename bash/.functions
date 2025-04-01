@@ -189,6 +189,10 @@ function git_branch_delete() {
   fi
 }
 
+function git_clean_repository() {
+  git clean -fdx; git submodule foreach git clean -fdx
+}
+
 # repository register recursive using mr - a Multiple Repository management tool
 function repository_register_recursive() {
   find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c 'cd "$0"; mr register; cd ..' {} \;
