@@ -117,4 +117,6 @@ alias assh="autossh -M 0"
 
 alias rgh="rg --hidden"
 
-alias fman="compgen -c | fzf | xargs man"
+alias manf="compgen -c | fzf | xargs man"
+
+alias tldrs="tldr --list | fzf-tmux -p 90%,90% --preview 'tldr --color {1}' | xargs tldr"
