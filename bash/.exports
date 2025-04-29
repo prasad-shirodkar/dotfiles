@@ -25,6 +25,17 @@ export HISTIGNORE="history:ls:pwd:";
 # Gets rid of "bash: update_terminal_cwd: command not found" error
 #unset PROMPT_COMMAND
 
+# Applies to Mac: /etc/bashrc loads /etc/bashrc_$TERM_PROGRAM. TERM_PROGRAM env var outside of tmux is typically set to "Apple_Terminal" 
+# and within tmux it is set to "tmux". The function "update_terminal_cwd" is defined in /etc/bashrc_Apple_Terminal.
+# https://wisdomandwonder.com/emacs/10789/emacsbash-bash-update_terminal_cwd-command-not-found-resolution
+if [ $(uname) == "Darwin" ]; then
+  if [ -z “$(type -t update_terminal_cwd)” ] || [ “$(type -t update_terminal_cwd)” != “function” ]; then
+    update_terminal_cwd() {
+      true
+    }
+  fi
+fi
+
 # After each command, append to the history file and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
