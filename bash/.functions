@@ -396,3 +396,38 @@ function extract_audio() {
   fi
   yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 "$1"
 }
+
+#oci starts here
+oci_delete_load_balancers() {
+  oci lb load-balancer list --all | jq '.data[].id' -r | while read vocid; do echo "Deleting $vocid" && oci lb load-balancer delete --force --load-balancer-id $vocid; done
+}
+
+oci_delete_network_load_balancers() {
+  oci nlb network-load-balancer list --all | jq '.data.items[].id' -r | while read vocid; do echo "Deleting $vocid" && oci nlb network-load-balancer delete --force --network-load-balancer-id $vocid; done
+}
+
+oci_delete_block_volumes() {
+  oci bv volume list --all | jq '.data[].id' -r | while read vocid; do echo "Deleting $vocid" && oci bv volume delete --force --volume-id $vocid; done
+}
+
+oci_delete_boot_volumes() {
+  oci bv boot-volume list --all | jq '.data[].id' -r | while read vocid; do echo "Deleting $vocid" && oci bv boot-volume delete --force --boot-volume-id $vocid; done
+}
+
+oci_delete_oke_clusters() {
+  oci ce cluster list --all | jq '.data[].id' -r | while read vocid; do echo "Deleting $vocid" && oci ce cluster delete --force --cluster-id $vocid; done
+}
+
+oci_delete_compute_instances() {
+  oci compute instance list --all | jq '.data[].id' -r | while read vocid; do echo "Deleting $vocid" && oci compute instance terminate --force --instance-id $vocid; done
+}
+
+delete_oci_cruft() {
+  oci_delete_oke_clusters
+  oci_delete_compute_instances
+  oci_delete_load_balancers
+  oci_delete_network_load_balancers
+  oci_delete_block_volumes
+  oci_delete_boot_volumes
+}
+#oci ends here
