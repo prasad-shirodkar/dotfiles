@@ -23,6 +23,9 @@ alias egrep="egrep --color=auto"
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
+# Networking
+alias ip="ip -c"
+
 batdiff() {
   git diff --name-only --diff-filter=d | xargs bat --diff
 }
