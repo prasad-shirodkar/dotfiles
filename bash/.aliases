@@ -64,6 +64,10 @@ alias gcs="git commit -a --signoff"
 alias gcsr="git commit -a --signoff --reuse-message=HEAD"
 alias gr="gitReplace"
 
+alias rf="repository_fetch_recursive"
+alias ru="repository_update_recursive"
+alias rfu="repository_fetch_recursive && repository_update_recursive"
+
 # jenkins
 alias jst="brew services start jenkins-lts"
 alias jsto="brew services stop jenkins-lts"
