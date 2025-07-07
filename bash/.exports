@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
 command -v brew > /dev/null 2>&1
-[ $? -eq 0 ] && [ -f "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh ] && source "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh
-[ $? -ne 0 ] && [ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
-[ $? -ne 0 ] && [ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt
-[ $? -ne 0 ] && [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh
-[ $? -ne 0 ] && [ -f /usr/share/doc/git/contrib/completion/git-prompt.sh ] && source /usr/share/doc/git/contrib/completion/git-prompt.sh
+if test $? -eq 0; then
+  [ -f "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh ] && source "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh
+  [ -f "$(brew --prefix)"/etc/bash_completion.d/git-completion.bash ] && source "$(brew --prefix)"/etc/bash_completion.d/git-completion.bash
+else
+  [ $? -ne 0 ] && [ -x /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
+  [ $? -ne 0 ] && [ -f /etc/bash_completion.d/git-prompt ] && source /etc/bash_completion.d/git-prompt
+  [ $? -ne 0 ] && [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh
+  [ $? -ne 0 ] && [ -f /usr/share/doc/git/contrib/completion/git-prompt.sh ] && source /usr/share/doc/git/contrib/completion/git-prompt.sh
+fi
 
 # Set bash as our shell, idk why anyone would use something else ;)
 shell="$(which bash)";
