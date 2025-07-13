@@ -339,6 +339,7 @@ function update() {
       print_execute sudo dnf upgrade;
       print_execute sudo dnf autoremove;
       print_execute sudo dnf clean all;
+      print_execute sudo dnf needs-restarting -rus;
     fi
   elif is_macos; then
     if exists brew; then
