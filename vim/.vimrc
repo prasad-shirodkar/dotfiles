@@ -56,6 +56,7 @@ let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+let g:pandoc#modules#disabled = ["folding"]
 
 " Initialize plugin system
 call plug#end()
