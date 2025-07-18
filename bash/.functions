@@ -432,3 +432,10 @@ delete_oci_cruft() {
   oci_delete_boot_volumes
 }
 #oci ends here
+
+unset_proxy () {
+  unset ALL_PROXY HTTPS_PROXY HTTP_PROXY http_proxy https_proxy no_proxy NO_PROXY
+}
+
+alias swp="set_proxy"
+alias uwp="unset_proxy"
