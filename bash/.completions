@@ -11,6 +11,8 @@ complete -W "$(echo $(vagrant list-commands | sed '1,3d' | awk '{print $1}'))" v
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
 _fzf_comprun() {
   local command=$1
   shift
