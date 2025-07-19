@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+source $SCRIPT_DIR/.functions
+
+pushd $SCRIPT_DIR > /dev/null
+
 [ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
 eval "source <(kubectl completion bash)"
@@ -11,7 +16,9 @@ complete -W "$(echo $(vagrant list-commands | sed '1,3d' | awk '{print $1}'))" v
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+if exists brew; then
+  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+fi
 
 _fzf_comprun() {
   local command=$1
@@ -22,3 +29,5 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+popd > /dev/null
