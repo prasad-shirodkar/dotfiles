@@ -2,16 +2,20 @@
 
 [ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
+command -v brew > /dev/null 2>&1
+if test $? -eq 0; then
+  export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
+  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+else
+  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+fi
+
 eval "source <(kubectl completion bash)"
 eval "source <(kind completion bash)"
 eval "source <(helm completion bash)"
 #eval "$(_OCI_COMPLETE=source oci)"
 complete -W "$(echo $(vagrant list-commands | sed '1,3d' | awk '{print $1}'))" vagrant
-
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 _fzf_comprun() {
   local command=$1
