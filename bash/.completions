@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+source $SCRIPT_DIR/.functions
+
+pushd $SCRIPT_DIR > /dev/null
+
 [ -x /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
-command -v brew > /dev/null 2>&1
-if test $? -eq 0; then
+
+if exists brew; then
   export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
   [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 else
@@ -26,3 +31,5 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+popd > /dev/null
