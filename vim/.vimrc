@@ -17,6 +17,12 @@ set smartcase
 " Use the OS clipboard by default on versions compiled with +clipboard
 set clipboard=unnamed
 
+" Copy and Paste to/from Vim from/to Other Programs! https://www.youtube.com/watch?v=E_rbfQqrm7g
+"vnoremap <C-y> "+y
+vnoremap <C-y> "*y :let @+=@*<CR>
+" map <C-v> "+p
+map <C-v> "+P
+
 " fzf vim bindings
 set rtp+=/usr/local/opt/fzf
 
