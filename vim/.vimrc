@@ -71,3 +71,33 @@ call plug#end()
 " https://pragmaticpineapple.com/improving-vim-workflow-with-fzf/
 nnoremap <C-p> :GFiles<Cr>
 nnoremap <C-g> :Rg<Cr>
+
+" Refer https://github.com/knightofiam/dotfiles/blob/ce460496be913f68691d0ecb33730bc1a178f971/vim/vimrc#L20-L47
+" Swap files
+" Create ~/.vim/swap if it doesn't exist
+if !isdirectory($HOME."/.vim/swap")
+  call mkdir($HOME."/.vim/swap", "p", 0700)
+endif
+" Consolidate swap files
+" Use // for absolute file paths to avoid name collisions
+set directory=~/.vim/swap//
+
+" Undo files
+" Create ~/.vim/undo if it doesn't exist
+if !isdirectory($HOME."/.vim/undo")
+  call mkdir($HOME."/.vim/undo", "p", 0700)
+endif
+" Consolidate undo files
+" Use // for absolute file paths to avoid name collisions
+set undodir=~/.vim/undo//
+set undofile " Enable undo files
+
+" Backup files
+" Create ~/.vim/backup if it doesn't exist
+if !isdirectory($HOME."/.vim/backup")
+  call mkdir($HOME."/.vim/backup", "p", 0700)
+endif
+" Consolidate backup files
+" Use // for absolute file paths to avoid name collisions
+set backupdir=~/.vim/backup//
+set backup " Enable backup files
