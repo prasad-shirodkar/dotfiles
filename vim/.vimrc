@@ -19,7 +19,7 @@ set clipboard=unnamed
 
 " Copy and Paste to/from Vim from/to Other Programs! https://www.youtube.com/watch?v=E_rbfQqrm7g
 "vnoremap <C-y> "+y
-vnoremap <C-y> "*y :let @+=@*<CR>
+vnoremap <silent> <C-y> "*y :let @+=@*<CR>
 " map <C-v> "+p
 map <C-v> "+P
 
