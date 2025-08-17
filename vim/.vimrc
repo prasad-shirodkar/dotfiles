@@ -26,7 +26,7 @@ map <C-v> "+P
 " fzf vim bindings
 set rtp+=/usr/local/opt/fzf
 
-" nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-f> :Files<CR>
 
 " Edit ~/.vimrc file
 nnoremap ev :e $MYVIMRC<CR>
