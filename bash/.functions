@@ -28,18 +28,6 @@ function is_cpu_intel() {
   is_cpu "Intel"
 }
 
-function alternate_aliases() {
-  # On debian, fd-find package contains fdfind instead. So make alias back to fd
-  if exists fdfind; then
-    alias fd="fdfind"
-  fi
-  # On debian, bat package contains batcat instead. So make alias back to bat
-  if exists batcat; then
-    alias bat="batcat"
-  fi
-}
-alternate_aliases
-
 function docker_login() {
   if [ ! -r $HOME/.dockerhub_token.txt ]; then
     echo "docker token file not found"

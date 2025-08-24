@@ -38,4 +38,18 @@ if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
   pathmunge $GROOVY_HOME/bin
 fi
 
+# On debian, fd-find package contains fdfind instead. So create "fd" symlink for fdfind
+if is_linux && [[ ! -f $HOME/.local/bin/fd ]] && exists fdfind; then
+  mkdir -p $HOME/.local/bin
+  ln -s $(which fdfind) $HOME/.local/bin/fd
+  pathmunge $HOME/.local/bin
+fi
+
+# On debian, bat package contains batcat instead. So create "bat" symlink for batcat
+if is_linux && [[ ! -f $HOME/.local/bin/bat ]] && exists batcat; then
+  mkdir -p $HOME/.local/bin
+  ln -s $(which batcat) $HOME/.local/bin/bat
+  pathmunge $HOME/.local/bin
+fi
+
 popd > /dev/null
