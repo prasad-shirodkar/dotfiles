@@ -4,7 +4,7 @@
 #set -x
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
-source $SCRIPT_DIR/.exports
+source $SCRIPT_DIR/bash/.exports
 
 pushd $SCRIPT_DIR > /dev/null
 
