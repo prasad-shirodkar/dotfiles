@@ -4,16 +4,17 @@
 #set -x
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+source $SCRIPT_DIR/.exports
 
 pushd $SCRIPT_DIR > /dev/null
 
-mkdir -p $HOME/.config
+mkdir -p $XDG_CONFIG_HOME
 
 stow --target=$HOME bash
 stow --target=$HOME vim
 stow --target=$HOME tmux
 stow --target=$HOME screen
-stow --target=$HOME/.config config
+stow --target=$XDG_CONFIG_HOME config
 
 source ~/.bashrc
 

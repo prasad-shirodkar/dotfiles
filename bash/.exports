@@ -60,7 +60,9 @@ export LSCOLORS=ExGxFxdxCxDxDxHBhDhCgC
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
-export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden"
+
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Refer https://support.apple.com/en-us/102360 to silence zsh message on mac
 export BASH_SILENCE_DEPRECATION_WARNING=1
