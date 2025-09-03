@@ -421,9 +421,40 @@ delete_oci_cruft() {
 }
 #oci ends here
 
-unset_proxy () {
+unset_proxy() {
   unset ALL_PROXY HTTPS_PROXY HTTP_PROXY http_proxy https_proxy no_proxy NO_PROXY
 }
 
 alias swp="set_proxy"
 alias uwp="unset_proxy"
+
+SSH_CONFIG_FILE="$HOME/.ssh/config"
+HOST_ALIAS="github.com"
+#PROXY_COMMAND="nc -X connect -x $PROXY_JUMP_HOST %h %p"
+#PROXY_COMMAND="ssh -W %h:%p $PROXY_JUMP_HOST"
+
+function set_proxy_command_execute() {
+    echo "Setting ProxyCommand for $HOST_ALIAS..."
+    local host="$1"
+    local proxy_command="nc -X connect -x $host %h %p"
+    if [ -z "$host" ]; then
+      echo "error: ssh host var missing" 2>&1
+      return 1
+    fi
+    if grep -q "Host $HOST_ALIAS" "$SSH_CONFIG_FILE"; then
+        gsed -i "/Host $HOST_ALIAS/!b;n;/ProxyCommand/ {s/.*/  ProxyCommand $proxy_command/}; t; a\  ProxyCommand $proxy_command" "$SSH_CONFIG_FILE"
+    else
+        echo -e "\nHost $HOST_ALIAS\n  ProxyCommand $proxy_command" >> "$SSH_CONFIG_FILE"
+    fi
+    echo "ProxyCommand set."
+}
+
+function unset_proxy_command_execute() {
+    echo "Unsetting ProxyCommand for $HOST_ALIAS..."
+    if grep -A 1 "Host $HOST_ALIAS" "$SSH_CONFIG_FILE" | grep -q "ProxyCommand"; then
+        gsed -i "/Host $HOST_ALIAS/,/^[^[:space:]]/ { /ProxyCommand/d }" "$SSH_CONFIG_FILE"
+    else
+        echo "ProxyCommand not found for $HOST_ALIAS."
+    fi
+    echo "ProxyCommand unset."
+}
