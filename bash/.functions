@@ -217,6 +217,7 @@ function install_via_apt() {
   install_glow
   install_rupa_z
   install_kubectl
+  install_helm
   install_kind
   install_sublimetext
   install_google_chrome
@@ -263,6 +264,17 @@ function install_kubectl() {
       sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
     fi
     sudo apt update && sudo apt install -y kubectl
+  fi
+}
+
+function install_helm() {
+  # https://helm.sh/docs/intro/install/#from-apt-debianubuntu
+  if exists apt; then
+    sudo apt-get install curl gpg apt-transport-https --yes
+    curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+    echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+    sudo apt-get update
+    sudo apt-get install helm
   fi
 }
 
