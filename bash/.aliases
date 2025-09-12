@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias v="vi"
+alias vf="vi \$(fzfp)"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -93,8 +95,6 @@ alias kgpf="kubectl get pods -A --no-headers | fzf | awk '{print $1, $2}' | xarg
 alias kdc="kind delete cluster"
 alias kdca="kind delete clusters --all"
 alias kgc="kind get clusters"
-
-alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 alias wifitest="airport_loop"
 
