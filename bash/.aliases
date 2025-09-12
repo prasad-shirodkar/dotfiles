@@ -65,6 +65,8 @@ alias gcar="git commit -a --reuse-message=HEAD"
 alias gcs="git commit -a --signoff"
 alias gcsr="git commit -a --signoff --reuse-message=HEAD"
 alias gr="gitReplace"
+alias gsw='git switch $(git branch --format="%(refname:short)" | fzf)'
+alias gswt='git switch --detach $(git tag --format="%(refname:short)" | fzf)'
 
 alias rf="repository_fetch_recursive"
 alias ru="repository_update_recursive"
