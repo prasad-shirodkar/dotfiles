@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias fzfp='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias v="vi"
-alias vf="vi \$(fzfp)"
+alias vf='vi $(fzfp)'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
