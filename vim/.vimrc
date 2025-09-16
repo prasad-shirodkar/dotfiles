@@ -26,8 +26,6 @@ map <C-v> "+P
 " fzf vim bindings
 set rtp+=/usr/local/opt/fzf
 
-nnoremap <silent> <C-f> :Files<CR>
-
 " Edit ~/.vimrc file
 nnoremap ev :e $MYVIMRC<CR>
 " Reload ~/.vimrc file
@@ -68,9 +66,12 @@ let g:pandoc#spell#enabled = 0
 " Initialize plugin system
 call plug#end()
 
+nnoremap <silent><leader>b :Buffers<CR>
+nnoremap <silent> <C-f> :Files!<CR>
+
 " https://pragmaticpineapple.com/improving-vim-workflow-with-fzf/
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-g> :Rg<Cr>
+nnoremap <C-p> :GFiles!<Cr>
+nnoremap <C-g> :Rg!<Cr>
 
 " Refer https://github.com/knightofiam/dotfiles/blob/ce460496be913f68691d0ecb33730bc1a178f971/vim/vimrc#L20-L47
 " Swap files
