@@ -67,6 +67,8 @@ alias gcsr="git commit -a --signoff --reuse-message=HEAD"
 alias gr="gitReplace"
 alias gsw='git switch $(git branch --format="%(refname:short)" | fzf)'
 alias gswt='git switch --detach $(git tag --format="%(refname:short)" | fzf)'
+# list git tags in descending order
+alias gt='git tag --list --sort="-version:refname"'
 
 alias rf="repository_fetch_recursive"
 alias ru="repository_update_recursive"
