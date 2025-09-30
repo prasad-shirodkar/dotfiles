@@ -39,6 +39,10 @@ if exists brew; then
   # gnu diffutils
   pathmunge "$(brew --prefix diffutils)/libexec/gnubin"
   export MANPATH="$(brew --prefix diffutils)/libexec/gnuman:$MANPATH"
+
+  # gnu grep
+  pathmunge "$(brew --prefix grep)/libexec/gnubin"
+  export MANPATH="$(brew --prefix grep)/libexec/gnuman:$MANPATH"
 fi
 
 if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
