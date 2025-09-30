@@ -31,6 +31,14 @@ if exists brew; then
   # gnu make
   pathmunge ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin
   export MANPATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnuman:$MANPATH"
+
+  # gnu findutils
+  pathmunge ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/findutils/libexec/gnuman:$MANPATH"
+
+  # gnu diffutils
+  pathmunge ${HOMEBREW_PREFIX}/opt/diffutils/libexec/gnubin
+  export MANPATH="${HOMEBREW_PREFIX}/opt/diffutils/libexec/gnuman:$MANPATH"
 fi
 
 if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
