@@ -17,28 +17,28 @@ if exists brew; then
   export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
 
   # coreutils
-  pathmunge ${brew --prefix coreutils}/libexec/gnubin
-  export MANPATH="${brew --prefix coreutils}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix coreutils)/libexec/gnubin"
+  export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 
   # gnu-sed
-  pathmunge ${brew --prefix gnu-sed}/libexec/gnubin
-  export MANPATH="${brew --prefix gnu-sed}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix gnu-sed)/libexec/gnubin"
+  export MANPATH="$(brew --prefix gnu-sed)/libexec/gnuman:$MANPATH"
 
   # gnu-tar
-  pathmunge ${brew --prefix gnu-tar}/libexec/gnubin
-  export MANPATH="${brew --prefix gnu-tar}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix gnu-tar)/libexec/gnubin"
+  export MANPATH="$(brew --prefix gnu-tar)/libexec/gnuman:$MANPATH"
   
   # gnu make
-  pathmunge ${brew --prefix make}/libexec/gnubin
-  export MANPATH="${brew --prefix make}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix make)/libexec/gnubin"
+  export MANPATH="$(brew --prefix make)/libexec/gnuman:$MANPATH"
 
   # gnu findutils
-  pathmunge ${brew --prefix findutils}/libexec/gnubin
-  export MANPATH="${brew --prefix findutils}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix findutils)/libexec/gnubin"
+  export MANPATH="$(brew --prefix findutils)/libexec/gnuman:$MANPATH"
 
   # gnu diffutils
-  pathmunge ${brew --prefix diffutils}/libexec/gnubin
-  export MANPATH="${brew --prefix diffutils}/libexec/gnuman:$MANPATH"
+  pathmunge "$(brew --prefix diffutils)/libexec/gnubin"
+  export MANPATH="$(brew --prefix diffutils)/libexec/gnuman:$MANPATH"
 fi
 
 if [[ -d "/usr/local/opt/groovy/libexec" ]]; then
