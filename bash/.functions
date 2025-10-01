@@ -135,6 +135,10 @@ function toggle_mac_dock() {
  fi
 }
 
+function markdown_preview() {
+  find . \( -path '*/vendor/*' -or -path '*/.git/*' -or -path '*/node_modules/*' \) -prune -or -type f -name "*.md" -print | fzf | xargs lnav
+}
+
 function markdown() {
   pandoc "$1" | lynx -stdin
 }

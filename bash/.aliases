@@ -118,6 +118,7 @@ alias txa='tmux a -t'
 alias txk='tmux kill-session -t'
 
 # Markdown viewers
+alias mf="markdown_preview"
 alias md="markdown"
 alias mdb="markdown_browser_preview"
 alias glow="glow -s dark -p"
