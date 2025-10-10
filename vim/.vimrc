@@ -69,6 +69,10 @@ call plug#end()
 nnoremap <silent><leader>b :Buffers<CR>
 nnoremap <silent> <C-f> :Files!<CR>
 
+" command! MarkdownFiles call fzf#vim#files('', {'source': 'find . -type f -name "*.md"'}, 1)
+command! MarkdownFiles call fzf#vim#files('', {'source': 'fd --extension md'}, 1)
+nnoremap <silent> <C-m> :MarkdownFiles<CR>
+
 " https://pragmaticpineapple.com/improving-vim-workflow-with-fzf/
 nnoremap <C-p> :GFiles!<Cr>
 nnoremap <C-g> :Rg!<Cr>
