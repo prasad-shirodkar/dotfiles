@@ -462,9 +462,6 @@ unset_proxy() {
   unset ALL_PROXY HTTPS_PROXY HTTP_PROXY http_proxy https_proxy no_proxy NO_PROXY
 }
 
-alias swp="set_proxy"
-alias uwp="unset_proxy"
-
 SSH_CONFIG_FILE="$HOME/.ssh/config"
 HOST_ALIAS="github.com"
 #PROXY_COMMAND="nc -X connect -x $PROXY_JUMP_HOST %h %p"
