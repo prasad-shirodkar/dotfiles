@@ -492,3 +492,14 @@ function unset_proxy_command_execute() {
     fi
     echo "ProxyCommand unset."
 }
+
+# Refer https://smallsharpsoftwaretools.com/tutorials/read_a_line_from_a_file/
+function catln() {
+  num=$1
+  input=$2
+  if [ -z "$input" ]; then
+    sed -n ${num}p </dev/stdin
+  else
+    sed -n ${num}p $input
+  fi
+}
