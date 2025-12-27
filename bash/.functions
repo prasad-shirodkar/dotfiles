@@ -420,7 +420,7 @@ function extract_audio() {
     print "argument missing"
     return 1
   fi
-  yt-dlp --embed-metadata --embed-thumbnail --extract-audio --audio-format mp3 --audio-quality 0 --output '%(title)s.%(ext)s' "$1"
+  yt-dlp --embed-metadata --embed-thumbnail --extract-audio --audio-format best --audio-quality 0 --output '%(title)s.%(ext)s' "$1"
 }
 
 #oci starts here
