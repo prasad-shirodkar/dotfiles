@@ -463,34 +463,35 @@ unset_proxy() {
 }
 
 SSH_CONFIG_FILE="$HOME/.ssh/config"
-HOST_ALIAS="github.com"
 #PROXY_COMMAND="nc -X connect -x $PROXY_JUMP_HOST %h %p"
 #PROXY_COMMAND="ssh -W %h:%p $PROXY_JUMP_HOST"
 
-function set_proxy_command_execute() {
-    echo "Setting ProxyCommand for $HOST_ALIAS..."
-    local host="$1"
-    local proxy_command="nc -X connect -x $host %h %p"
-    if [ -z "$host" ]; then
-      echo "error: ssh host var missing" 2>&1
+function set_ssh_proxy_command() {
+    if [[ "$#" -ne 2 ]]; then
+      echo "error: ssh host alias or proxy jump host missing" 2>&1
       return 1
     fi
-    if grep -q "Host $HOST_ALIAS" "$SSH_CONFIG_FILE"; then
-        gsed -i "/Host $HOST_ALIAS/!b;n;/ProxyCommand/ {s/.*/  ProxyCommand $proxy_command/}; t; a\  ProxyCommand $proxy_command" "$SSH_CONFIG_FILE"
-    else
-        echo -e "\nHost $HOST_ALIAS\n  ProxyCommand $proxy_command" >> "$SSH_CONFIG_FILE"
+    local host_alias="$1"
+    local proxy_jump_host="$2"
+    local proxy_command="nc -X connect -x $proxy_jump_host %h %p"
+    if grep -q "Host $host_alias" "$SSH_CONFIG_FILE"; then
+      gsed -i '/Host '"$host_alias"'/,/Host / {
+	  /ProxyCommand/ {
+	    s/.*/  ProxyCommand '"$proxy_command"'/
+	    h
+	  }
+	  $!b; /ProxyCommand/! a\  ProxyCommand '"$proxy_command"'
+	}' "$SSH_CONFIG_FILE"
     fi
-    echo "ProxyCommand set."
 }
 
-function unset_proxy_command_execute() {
-    echo "Unsetting ProxyCommand for $HOST_ALIAS..."
-    if grep -A 1 "Host $HOST_ALIAS" "$SSH_CONFIG_FILE" | grep -q "ProxyCommand"; then
-        gsed -i "/Host $HOST_ALIAS/,/^[^[:space:]]/ { /ProxyCommand/d }" "$SSH_CONFIG_FILE"
-    else
-        echo "ProxyCommand not found for $HOST_ALIAS."
+function unset_ssh_proxy_command() {
+    if [[ "$#" -ne 1 ]]; then
+      echo "error: ssh host alias missing" 2>&1
+      return 1
     fi
-    echo "ProxyCommand unset."
+    local host_alias="$1"
+    gsed -i "/Host $host_alias/,/Host / { /ProxyCommand/d }" "$SSH_CONFIG_FILE"
 }
 
 # Refer https://smallsharpsoftwaretools.com/tutorials/read_a_line_from_a_file/
