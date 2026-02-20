@@ -504,3 +504,11 @@ function catln() {
     sed -n ${num}p $input
   fi
 }
+
+function image_registry_login() {
+  if [[ "$#" -ne 4 ]]; then
+    echo "error: expected 4 arguments, got $# arguments instead" 2>&1
+    return 1
+  fi
+  cat "$1" | "$2" login "$3" --username "$4" --password-stdin
+}
