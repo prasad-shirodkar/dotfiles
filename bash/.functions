@@ -90,6 +90,8 @@ helpp() {
     "$@" --help 2>&1 | bathelp
 }
 
+# github starts here
+
 function cloneAllGithubOrg() {
   if [[ -z "$GITHUB_ORG" ]]; then
     echo "error: GITHUB_ORG env var must be defined"
@@ -107,6 +109,12 @@ function cloneAllGithubOrg() {
       ((++page))
   done
 }
+
+function github_prs_requesting_my_review() {
+  gh search prs --review-requested=@me --state=open
+}
+
+# github ends here
 
 #mac internet troubleshooting
 function airport_loop() {
