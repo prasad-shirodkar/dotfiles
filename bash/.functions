@@ -399,7 +399,7 @@ function field() {
 }
 
 function print_execute() {
-  printf "+ %s\n" "$*" >&2
+  printf "+ %s\n" "$*" 2>&1
   "$@"
 }
 
