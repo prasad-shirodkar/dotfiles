@@ -223,7 +223,7 @@ function install_via_apt() {
   stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard  xclip \
   openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find fonts-indic \
   hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat firmware-linux firmware-linux-nonfree firmware-misc-nonfree firmware-realtek ufw hdparm yt-dlp \
-  debian-refcard doc-base bridge-utils wireguard openresolv myrepos extrepo tokei make-doc
+  debian-refcard doc-base bridge-utils wireguard openresolv myrepos extrepo tokei make-doc rust-all
   install_intel_packages
   install_laptop_packages
   install_glow
@@ -235,6 +235,7 @@ function install_via_apt() {
   install_sublimetext
   install_google_chrome
   install_upgrade_unifi
+  install_rust_cargo_packages
 }
 
 function install_docker() {
@@ -358,6 +359,12 @@ function install_upgrade_unifi() {
   # https://community.ui.com/questions/ccbc7530-dd61-40a7-82ec-22b17f027776
   if exists apt; then
     rm unifi-latest.sh &> /dev/null; wget https://get.glennr.nl/unifi/install/install_latest/unifi-latest.sh && sudo bash unifi-latest.sh
+  fi
+}
+
+function install_rust_cargo_packages() {
+  if exists cargo; then
+    cargo install difftastic
   fi
 }
 

@@ -64,4 +64,6 @@ if is_linux && [[ ! -f $HOME/.local/bin/bat ]] && exists batcat; then
   pathmunge $HOME/.local/bin
 fi
 
+[[ -d "$HOME/.cargo/bin" ]] && pathmunge "$HOME/.cargo/bin"
+
 popd > /dev/null
