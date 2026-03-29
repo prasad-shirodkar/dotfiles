@@ -234,7 +234,6 @@ function install_via_apt() {
   install_kind
   install_sublimetext
   install_google_chrome
-  install_upgrade_unifi
   install_rust_cargo_packages
 }
 
@@ -354,14 +353,6 @@ function install_google_chrome() {
   fi
 }
 
-function install_upgrade_unifi() {
-  # https://help.ui.com/hc/en-us/articles/220066768-Updating-and-Installing-Self-Hosted-UniFi-Network-Servers-Linux
-  # https://community.ui.com/questions/ccbc7530-dd61-40a7-82ec-22b17f027776
-  if exists apt; then
-    rm unifi-latest.sh &> /dev/null; wget https://get.glennr.nl/unifi/install/install_latest/unifi-latest.sh && sudo bash unifi-latest.sh
-  fi
-}
-
 function install_rust_cargo_packages() {
   if exists cargo; then
     cargo install difftastic
@@ -419,13 +410,6 @@ function ufw_execute() {
   sudo ufw allow ssh
   sudo ufw default deny incoming
   sudo ufw default allow outgoing
-
-  # unifi network starts here
-  sudo ufw allow proto tcp from any to any port 8080
-  sudo ufw allow proto udp from any to any port 10001
-  sudo ufw allow proto udp from any to any port 3478
-  sudo ufw allow proto tcp from any to any port 8843
-  # unifi network ends here
 
   sudo ufw enable
 }
