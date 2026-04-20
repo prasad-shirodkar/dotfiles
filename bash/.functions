@@ -230,7 +230,7 @@ function install_via_apt() {
     stow tldr fzf shellcheck chromium chrome-gnome-shell golang tig jq yq ripgrep fd-find htop tree wireguard xclip \
     openvpn nmap file awscli pandoc lynx info autojump neofetch git gitk tmux gnome-tweaks gparted keepassxc ncdu bat fd-find fonts-indic \
     hardinfo ansible vagrant ncdu dmidecode whois ldnsutils bat firmware-linux firmware-linux-nonfree firmware-misc-nonfree firmware-realtek ufw hdparm yt-dlp \
-    debian-refcard doc-base bridge-utils wireguard openresolv myrepos extrepo tokei make-doc rustup pdfgrep sioyek lshw
+    debian-refcard doc-base bridge-utils wireguard openresolv myrepos extrepo tokei make-doc rustup pdfgrep sioyek lshw zbar-tools oathtool imagemagick
   fi
 
   install_intel_packages
