@@ -373,6 +373,7 @@ function update() {
   if is_linux; then
     if exists apt; then
       print_execute sudo apt-get update;
+      print_execute which apt-file && sudo apt-file update;
       print_execute sudo apt-get upgrade;
       print_execute sudo apt-get autoremove --purge;
       print_execute sudo apt-get clean;
