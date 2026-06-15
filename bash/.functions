@@ -40,32 +40,14 @@ function docker_login() {
   fi
 }
 
-function enable_docker_service() {
-  sudo systemctl enable docker.service
-  sudo systemctl enable containerd.service
-  sudo systemctl status docker.service
-  sudo systemctl status containerd.service
-}
+service_action() {
+  local action="$1"
+  shift
+  [[ $# -eq 0 ]] && echo "Usage: service_action <action> <service...>" && return 1
 
-function disable_docker_service() {
-  sudo systemctl disable docker.service
-  sudo systemctl disable containerd.service
-  sudo systemctl status docker.service
-  sudo systemctl status containerd.service
-}
-
-function start_docker_service() {
-  sudo systemctl start docker.service
-  sudo systemctl start containerd.service
-  sudo systemctl status docker.service
-  sudo systemctl status containerd.service
-}
-
-function stop_docker_service() {
-  sudo systemctl stop docker.service
-  sudo systemctl stop containerd.service
-  sudo systemctl status docker.service
-  sudo systemctl status containerd.service
+  local s
+  for s in "$@"; do sudo systemctl "$action" "$s"; done
+  for s in "$@"; do sudo systemctl status "$s"; done
 }
 
 function docker_image_size() {
@@ -265,7 +247,7 @@ function install_docker() {
     Components: stable
     Architectures: $(dpkg --print-architecture)
     Signed-By: /etc/apt/keyrings/docker.asc
-    EOF
+EOF
 
     sudo apt-get update
 
