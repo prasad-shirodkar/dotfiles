@@ -46,8 +46,8 @@ service_action() {
   [[ $# -eq 0 ]] && echo "Usage: service_action <action> <service...>" && return 1
 
   local s
-  for s in "$@"; do sudo systemctl "$action" "$s"; done
-  for s in "$@"; do sudo systemctl status "$s"; done
+  for s in "$@"; do sudo systemctl --no-pager "$action" "$s"; done
+  for s in "$@"; do sudo systemctl --no-pager status "$s"; done
 }
 
 function docker_image_size() {
