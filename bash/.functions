@@ -204,7 +204,7 @@ function install_via_apt() {
   if exists apt; then
     sudo apt modernize-sources
 
-    if ! grep -q "^Components:[[:space:]].*contrib non-free non-free-firmware" debian.sources; then 
+    if ! grep -q "^Components:[[:space:]].*contrib non-free non-free-firmware" /etc/apt/sources.list.d/debian.sources; then
       sudo sed -i '/^Components:/ s/$/ contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
     fi
 
