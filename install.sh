@@ -53,7 +53,7 @@ stow --target=$HOME bash
 stow --target=$HOME vim
 stow --target=$HOME tmux
 stow --target=$HOME screen
-stow --target=$XDG_CONFIG_HOME config
+mkdir -p $XDG_CONFIG_HOME && stow --target=$XDG_CONFIG_HOME config
 
 # https://github.com/golang/tools/tree/master/gopls#installation
 exists go && go install golang.org/x/tools/gopls@latest
