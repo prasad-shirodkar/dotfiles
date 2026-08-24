@@ -16,6 +16,7 @@ fi
 eval "source <(kubectl completion bash)"
 eval "source <(kind completion bash)"
 eval "source <(helm completion bash)"
+exists docker && eval "source <(docker completion bash)"
 is_macos && exists container && eval "source <(container --generate-completion-script bash)"
 #eval "$(_OCI_COMPLETE=source oci)"
 complete -W "$(echo $(vagrant list-commands | sed '1,3d' | awk '{print $1}'))" vagrant
