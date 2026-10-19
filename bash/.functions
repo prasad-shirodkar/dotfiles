@@ -362,7 +362,7 @@ function update() {
     if exists apt; then
       print_execute sudo apt-get update;
       print_execute which apt-file && sudo apt-file update;
-      print_execute sudo apt-get upgrade;
+      print_execute sudo apt-get full-upgrade;
       print_execute sudo apt-get autoremove --purge;
       print_execute sudo apt-get clean;
     elif exists dnf; then
